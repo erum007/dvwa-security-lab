@@ -1116,7 +1116,7 @@ https:
 <img src="./media/image35.png"
 style="width:6.26772in;height:2.44444in" />
 
-Meanwhile with http:
+Meanwhile with http, there isn't any certificate:
 
 <img src="./media/image58.png"
 style="width:6.26772in;height:2.94444in" />
