@@ -1039,7 +1039,7 @@ full server access.
 Public exploitation could lead to loss of user trust, regulatory
 penalties, financial losses, etc.
 
-<ins>Mapping Each Vulnerability to its OWASP Top 10 Category:</ins>
+<ins>Mapping Each Vulnerability to its OWASP Top 10 Category:</ins>\
 **Bruteforce:** A07: Authentication Failures\
 **Command Injection:** A05: Injection\
 **CSRF:** A01: Broken Access Control\
