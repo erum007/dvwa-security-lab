@@ -5,7 +5,7 @@ After Docker installation from https://www.docker.com/products/docker-desktop/ w
 <img src="./media/image91.png"
 style="width:5.03646in;height:2.21065in" />
 
-We are presented with the login screen, we click on login without entering anything.
+We go to [http://localhost:8080](url) and are presented with the login screen, we click on login without entering anything.
 
 <img src="./media/image92.png"
 style="width:5.03646in;height:2.21065in" />
