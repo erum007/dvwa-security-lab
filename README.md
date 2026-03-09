@@ -3,12 +3,12 @@
 After Docker installation from https://www.docker.com/products/docker-desktop/ we verify the installation, and then deploy DVWA in Docker.
 
 <img src="./media/image91.png"
-style="width:5.03646in;height:2.71065in" />
+style="width:5.03646in;height:2.21065in" />
 
 We are presented with the login screen, we click on login without entering anything.
 
 <img src="./media/image92.png"
-style="width:5.03646in;height:2.71065in" />
+style="width:5.03646in;height:2.21065in" />
 
 We are then led to a page where we can create/reset database for our DVWA setup.
 
