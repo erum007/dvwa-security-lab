@@ -9,7 +9,7 @@
 <ins>Screenshots:</ins>
 
 <img src="./media/image3.png"
-style="width:5.03646in;height:2.71065in" />
+style="width:5.03646in;height:3.71065in" />
 
 <img src="./media/image17.png"
 style="width:5.09645in;height:3.1493in" />
