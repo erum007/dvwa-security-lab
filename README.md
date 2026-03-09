@@ -1,18 +1,27 @@
 # **Docker and DVWA Setup**
 
 After Docker installation from https://www.docker.com/products/docker-desktop/ we verify the installation, and then deploy DVWA in Docker.
+
 <img src="./media/image91.png"
 style="width:5.03646in;height:2.71065in" />
+
 We are presented with the login screen, we click on login without entering anything.
+
 <img src="./media/image92.png"
 style="width:5.03646in;height:2.71065in" />
+
 We are then led to a page where we can create/reset database for our DVWA setup.
+
 <img src="./media/image93.png"
 style="width:5.03646in;height:2.71065in" />
+
 Once it is done, we see the following and are asked to login:
+
 <img src="./media/image94.png"
 style="width:5.03646in;height:2.71065in" />
+
 Using the credentials username: admin and password: password, we are able to login.
+
 <img src="./media/image95.png"
 style="width:5.03646in;height:2.71065in" />
 
