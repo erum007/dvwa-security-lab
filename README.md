@@ -912,8 +912,10 @@ style="width:6.26772in;height:2.02778in" />
 
 <ins>Explanation of Why it Worked:</ins> In medium level, the \<script\> tag
 in the Elements tab no longer contains the logic. Instead, another
-script is imported as we see through the following: \<script
-src="../../vulnerabilities/javascript/source/[<ins>medium.js</ins>](http://medium.js)"\>\</script\>
+script is imported as we see through the following: 
+```javascript
+<script src="../../vulnerabilities/javascript/source/medium.js</script>
+```
 so exploiting the function in this file instead does the trick.
 
 3.  <ins>Security Level:</ins> High
