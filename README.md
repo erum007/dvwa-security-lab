@@ -1,4 +1,4 @@
-#**Vulnerability 1: Bruteforce**
+# **Vulnerability 1: Bruteforce**
 
 1.  <ins>Security Level:</ins> Low
 
