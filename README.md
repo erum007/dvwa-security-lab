@@ -1100,7 +1100,7 @@ Using the curl command for https://localhost:8443:
 <img src="./media/image32.png"
 style="width:6.26772in;height:3.63889in" />
 
-[<ins>https://localhost:443</ins>](https://localhost:443) view in the
+[<ins>https://localhost:8443</ins>](https://localhost:443) view in the
 browser:
 
 <img src="./media/image14.png"
