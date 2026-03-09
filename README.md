@@ -170,6 +170,7 @@ and then
 document.forms[0].submit();
 </script>
 ```
+in a new HTML file.
 
 <ins>Result:</ins> Password change failed on both attempts
 
