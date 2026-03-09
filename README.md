@@ -23,7 +23,7 @@ style="width:5.03646in;height:2.71065in" />
 Using the credentials username: admin and password: password, we are able to login.
 
 <img src="./media/image95.png"
-style="width:5.03646in;height:2.71065in" />
+style="width:5.03646in;height:2.41065in" />
 
 # **Vulnerability 1: Bruteforce**
 
