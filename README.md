@@ -1,6 +1,6 @@
 **Vulnerability 1: Bruteforce**
 
-1.  *Security Level:* Low
+1.  <ins>*Security Level:* Low</ins>
 
 *Payload Used:* Input used (Username/Password): admin/password
 
