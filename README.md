@@ -988,8 +988,8 @@ dependency conflicts.
 
 # **Security Analysis Questions:**
 
-<ins>Why Does SQL Injection Succeed at Low Security?</ins>
-\SQL Injection succeeds at the low security level because the application
+<ins>Why Does SQL Injection Succeed at Low Security?</ins>\
+SQL Injection succeeds at the low security level because the application
 directly inserts user input into SQL queries without sort of validation
 or sanitization. An example of a vulnerable SQL query is:\
 **SELECT \* FROM users WHERE username = '\$user' AND password =
@@ -999,8 +999,8 @@ When a malicious injection in inserted into it, it becomes:\
 Since '1'='1' is always true, the database returns all results and
 authentication is bypassed.
 
-<ins>What Control Prevents it at High?</ins>
-\At high security, the injection still succeeded despite the user being
+<ins>What Control Prevents it at High?</ins>\
+At high security, the injection still succeeded despite the user being
 redirected to a new window but usually at a good security level, SQL
 Injection is prevented by using parameterized queries input validation.
 An example of a safe query is:\
@@ -1008,8 +1008,8 @@ An example of a safe query is:\
 This makes the database treat user input strictly as data, not
 executable SQL.
 
-<ins>Does HTTPS Prevent these Attacks? Why or Why Not?</ins>
-\No, HTTPS does not prevent SQL Injection or XSS attacks. HTTPS only
+<ins>Does HTTPS Prevent these Attacks? Why or Why Not?</ins>\
+No, HTTPS does not prevent SQL Injection or XSS attacks. HTTPS only
 provides: encryption of data that is in transit, protection of integrity
 and server authentication.\
 It does protect data between the browser and the server, but it does not
