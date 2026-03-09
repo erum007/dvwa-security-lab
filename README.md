@@ -1,3 +1,21 @@
+# **Docker and DVWA Setup**
+
+After Docker installation from https://www.docker.com/products/docker-desktop/ we verify the installation, and then deploy DVWA in Docker.
+<img src="./media/image91.png"
+style="width:5.03646in;height:2.71065in" />
+We are presented with the login screen, we click on login without entering anything.
+<img src="./media/image92.png"
+style="width:5.03646in;height:2.71065in" />
+We are then led to a page where we can create/reset database for our DVWA setup.
+<img src="./media/image93.png"
+style="width:5.03646in;height:2.71065in" />
+Once it is done, we see the following and are asked to login:
+<img src="./media/image94.png"
+style="width:5.03646in;height:2.71065in" />
+Using the credentials username: admin and password: password, we are able to login.
+<img src="./media/image95.png"
+style="width:5.03646in;height:2.71065in" />
+
 # **Vulnerability 1: Bruteforce**
 
 1.  <ins>Security Level:</ins> Low
@@ -942,20 +960,17 @@ style="width:6.26772in;height:2.47222in" />
 style="width:6.26772in;height:1.02778in" />
 
 <ins>Where Application Files are Stored:</ins>
-
 The DVWA application files are stored inside the container at
 /var/www/html. This directory is the Apache web server’s document root,
 which means all the web pages and the application scripts are served
 from this important location.
 
 <ins>What Backend Technology DVWA Uses:</ins>
-
 DVWA uses PHP, Apache Web Server and MySQL / MariaDB database since DVWA
 is built using PHP and runs on the Apache web server. It connects to a
 MySQL database to store user credentials and application data.
 
 <ins>How Docker Isolates the Environment:</ins>
-
 Docker isolates the applications by running them inside containers with
 their own filesystems, network stacks, and process spaces. This ensures
 that the DVWA applications run independently from the host system and
@@ -965,35 +980,26 @@ dependency conflicts.
 # **Security Analysis Questions:**
 
 <ins>Why Does SQL Injection Succeed at Low Security?</ins>
-
 SQL Injection succeeds at the low security level because the application
 directly inserts user input into SQL queries without sort of validation
 or sanitization. An example of a vulnerable SQL query is:
-
 **SELECT \* FROM users WHERE username = '\$user' AND password =
 '\$pass';**
-
 When a malicious injection in inserted into it, it becomes:
-
 **SELECT \* FROM users WHERE username = '' OR '1'='1';**
-
 Since '1'='1' is always true, the database returns all results and
 authentication is bypassed.
 
 <ins>What Control Prevents it at High?</ins>
-
 At high security, the injection still succeeded despite the user being
 redirected to a new window but usually at a good security level, SQL
 Injection is prevented by using parameterized queries input validation.
 An example of a safe query is:
-
 **SELECT \* FROM users WHERE username = ? AND password = ?**
-
 This makes the database treat user input strictly as data, not
 executable SQL.
 
 <ins>Does HTTPS Prevent these Attacks? Why or Why Not?</ins>
-
 No, HTTPS does not prevent SQL Injection or XSS attacks. HTTPS only
 provides: encryption of data that is in transit, protection of integrity
 and server authentication.\
@@ -1002,62 +1008,42 @@ validate or sanitize user input. So XSS attacks and SQL injections are
 not prevented.
 
 <ins>What Risks Exist if this Application is Deployed Publicly?</ins>
-
 1.  **Data Theft**
-
 Attackers could extract sensitive information such as user credentials,
 personal data, database contents, etc.
 
 2.  **Account Takeover**
-
 SQL Injection and authentication bypass could allow attackers to log in
 as other users and also gain administrator access.
 
 3.  **Malware or Script Injection**
-
 XSS vulnerabilities could allow attackers to steal session cookies,
 redirect users to malicious sites as well as execute malicious scripts
 in victims’ browsers.
 
 4.  **Server Compromise**
-
 Command Injection or file vulnerabilities could allow attackers to
 execute system commands, upload malicious files and potentially gain
 full server access.
 
 5.  **Reputation and Legal Damage**
-
 Public exploitation could lead to loss of user trust, regulatory
 penalties, financial losses, etc.
 
 <ins>Mapping Each Vulnerability to its OWASP Top 10 Category:</ins>
-
 **Bruteforce:** A07: Authentication Failures
-
 **Command Injection:** A05: Injection
-
 **CSRF:** A01: Broken Access Control
-
 **File Inclusion:** A05: Injection
-
 **File Upload:** A06: Insecure Design / A05: Injection
-
 **Insecure CAPTCHA:** A07: Authentication Failures
-
 **SQL Injection:** A05: Injection
-
 **SQL Injection (Blind):** A05: Injection
-
 **Weak Session IDs:** A07: Authentication Failures
-
 **XSS (DOM):** A05: Injection
-
 **XSS (Reflected):** A05: Injection
-
 **XSS (Stored):** A05: Injection
-
 **CSP Bypass:** A02: Security Misconfiguration
-
 **JavaScript:** Usually leads to A05: Injection
 
 # **Bonus Task:**
