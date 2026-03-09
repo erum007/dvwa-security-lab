@@ -9,7 +9,7 @@
 <ins>Screenshots:</ins>
 
 <img src="./media/image3.png"
-style="width:6.03646in;height:2.71065in" />
+style="width:5.03646in;height:2.71065in" />
 
 <img src="./media/image17.png"
 style="width:5.09645in;height:3.1493in" />
@@ -72,7 +72,7 @@ the time required for brute forcing, it does not fully prevent the
 attack because there is still no strict limit on the number of login
 attempts.
 
-**Vulnerability 2: Command Injection**
+# **Vulnerability 2: Command Injection**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -134,7 +134,7 @@ style="width:6.26772in;height:3.34722in" />
 special characters seem to be filtered at this security level. This
 input validation prevents additional commands from being executed.
 
-**Vulnerability 3: CSRF**
+# **Vulnerability 3: CSRF**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -207,7 +207,7 @@ style="width:5.60938in;height:3.93327in" />
 fails here again due to the fact that there is strict token validation
 tied to the user session.
 
-**Vulnerability 4: File Inclusion**
+# **Vulnerability 4: File Inclusion**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -270,7 +270,7 @@ style="width:6.26772in;height:2.02778in" />
 restricts file inclusion to specific allowed files, preventing all sorts
 of arbitrary file access.
 
-**Vulnerability 5: File Upload**
+# **Vulnerability 5: File Upload**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -332,7 +332,7 @@ style="width:6.26772in;height:2.70833in" />
 validation of file extensions, MIME types, and file content to prevent
 malicious uploads.
 
-**Vulnerability 6: Insecure CAPTCHA**
+# **Vulnerability 6: Insecure CAPTCHA**
 
 The Insecure CAPTCHA module could not work at first since the DVWA
 Docker image did not include a configured Google reCAPTCHA API key.
@@ -350,7 +350,7 @@ style="width:6.13542in;height:2.73958in" />
 <img src="./media/image30.png"
 style="width:6.26772in;height:2.45833in" />
 
-**Vulnerability 7: SQL Injection**
+# **Vulnerability 7: SQL Injection**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -402,7 +402,7 @@ attack harder by using a separate popup and limiting visible inputs but
 the application still inserts user input directly into SQL queries,
 which is the real problem.
 
-**Vulnerability 8: SQL Injection (Blind)**
+# **Vulnerability 8: SQL Injection (Blind)**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -467,7 +467,7 @@ user input directly into the SQL statement without using parameterized
 queries. By inputting the payload, we still get to know the database
 name starts with ‘d’.
 
-**Vulnerability 9: Weak Session IDs**
+# **Vulnerability 9: Weak Session IDs**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -536,7 +536,7 @@ randomization methods such as hashing or random number generators. These
 methods increase entropy and make session IDs significantly harder to
 predict.
 
-**Vulnerability 10: XSS (DOM)**
+# **Vulnerability 10: XSS (DOM)**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -590,7 +590,7 @@ URL fragment (#) and writes it directly into the page without sanitizing
 it. \# is not filtered because the server never sees it and the
 vulnerability exists in the client-side JavaScript.
 
-**Vulnerability 11: XSS (Reflected)**
+# **Vulnerability 11: XSS (Reflected)**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -652,7 +652,7 @@ style="width:5.39063in;height:2.97582in" />
 <img src="./media/image74.png"
 style="width:5.35357in;height:2.67188in" />
 
-**Vulnerability 12: XSS (Stored)**
+# **Vulnerability 12: XSS (Stored)**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -714,7 +714,7 @@ the name field was targeted by first manipulating its character limit
 and then injecting JS. The name field needs to be secured by input
 validation as well, not just the message field.
 
-**Vulnerability 13: CSP Bypass**
+# **Vulnerability 13: CSP Bypass**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -794,7 +794,7 @@ to inject arbitrary JavaScript functions such as alert or console.log
 into the callback. Since the script is served from the same origin, it
 bypasses the CSP policy script-src 'self', resulting in code execution.
 
-**Vulnerability 14: Javascript Attacks**
+# **Vulnerability 14: Javascript Attacks**
 
 1.  <ins>Security Level:</ins> Low
 
@@ -893,7 +893,7 @@ manipulation via the Console often fails due to a race condition) which
 makes it very difficult to be able to execute scripts that would be sent
 with valid tokens.
 
-**Docker Inspection Tasks:**
+# **Docker Inspection Tasks:**
 
 <img src="./media/image5.png"
 style="width:6.26772in;height:0.72222in" />
@@ -928,7 +928,7 @@ that the DVWA applications run independently from the host system and
 all the other containers, improving security and also preventing any
 dependency conflicts.
 
-**Security Analysis Questions:**
+# **Security Analysis Questions:**
 
 <ins>Why Does SQL Injection Succeed at Low Security?</ins>
 
