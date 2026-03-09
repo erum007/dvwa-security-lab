@@ -1,4 +1,4 @@
-# **Docker and DVWA Setup**
+# **Docker Setup and DVWA Deployment**
 
 After Docker installation from https://www.docker.com/products/docker-desktop/ we verify the installation, and then deploy DVWA in Docker.
 
