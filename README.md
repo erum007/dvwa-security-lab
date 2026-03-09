@@ -991,11 +991,11 @@ dependency conflicts.
 <ins>Why Does SQL Injection Succeed at Low Security?</ins>
 SQL Injection succeeds at the low security level because the application
 directly inserts user input into SQL queries without sort of validation
-or sanitization. An example of a vulnerable SQL query is:
+or sanitization. An example of a vulnerable SQL query is:\
 **SELECT \* FROM users WHERE username = '\$user' AND password =
-'\$pass';**
-When a malicious injection in inserted into it, it becomes:
-**SELECT \* FROM users WHERE username = '' OR '1'='1';**
+'\$pass';**\
+When a malicious injection in inserted into it, it becomes:\
+**SELECT \* FROM users WHERE username = '' OR '1'='1';**\
 Since '1'='1' is always true, the database returns all results and
 authentication is bypassed.
 
@@ -1003,8 +1003,8 @@ authentication is bypassed.
 At high security, the injection still succeeded despite the user being
 redirected to a new window but usually at a good security level, SQL
 Injection is prevented by using parameterized queries input validation.
-An example of a safe query is:
-**SELECT \* FROM users WHERE username = ? AND password = ?**
+An example of a safe query is:\
+**SELECT \* FROM users WHERE username = ? AND password = ?**\
 This makes the database treat user input strictly as data, not
 executable SQL.
 
@@ -1040,19 +1040,19 @@ Public exploitation could lead to loss of user trust, regulatory
 penalties, financial losses, etc.
 
 <ins>Mapping Each Vulnerability to its OWASP Top 10 Category:</ins>
-**Bruteforce:** A07: Authentication Failures
-**Command Injection:** A05: Injection
-**CSRF:** A01: Broken Access Control
-**File Inclusion:** A05: Injection
-**File Upload:** A06: Insecure Design / A05: Injection
-**Insecure CAPTCHA:** A07: Authentication Failures
-**SQL Injection:** A05: Injection
-**SQL Injection (Blind):** A05: Injection
-**Weak Session IDs:** A07: Authentication Failures
-**XSS (DOM):** A05: Injection
-**XSS (Reflected):** A05: Injection
-**XSS (Stored):** A05: Injection
-**CSP Bypass:** A02: Security Misconfiguration
+**Bruteforce:** A07: Authentication Failures\
+**Command Injection:** A05: Injection\
+**CSRF:** A01: Broken Access Control\
+**File Inclusion:** A05: Injection\
+**File Upload:** A06: Insecure Design / A05: Injection\
+**Insecure CAPTCHA:** A07: Authentication Failures\
+**SQL Injection:** A05: Injection\
+**SQL Injection (Blind):** A05: Injection\
+**Weak Session IDs:** A07: Authentication Failures\
+**XSS (DOM):** A05: Injection\
+**XSS (Reflected):** A05: Injection\
+**XSS (Stored):** A05: Injection\
+**CSP Bypass:** A02: Security Misconfiguration\
 **JavaScript:** Usually leads to A05: Injection
 
 # **Bonus Task:**
