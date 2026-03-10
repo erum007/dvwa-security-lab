@@ -402,7 +402,7 @@ style="width:6.08333in;height:2.65625in" />
 <ins>Screenshots:</ins>
 
 <img src="./media/image110.png"
-style="width:5.9375in;height:2.46875in" />
+style="width:5.9375in;height:3.46875in" />
 
 <img src="./media/image108.png"
 style="width:6.08333in;height:2.65625in" />
@@ -411,7 +411,7 @@ style="width:6.08333in;height:2.65625in" />
 style="width:6.08333in;height:2.65625in" />
 
 <img src="./media/image109.png"
-style="width:6.08333in;height:2.65625in" />
+style="width:6.08333in;height:3.65625in" />
 
 <ins>Explanation of Why it Failed at a Higher Level:</ins> This is where it got tricky. Upon inspection of source file, again it was found that the captcha was verified not only when the parameter for step argument was 2 but also when an extra argument (g_captcha_response) was added with a specific value. To start off, we turned off FoxyProxy (proxy used for Burp Suite), solved the captcha (since Google reCAPTCHA did not work with proxy on), turned it back off and then clicked submit. The request was intercepted, and two attempts were made. We first left the argument for g_captcha_response as is and only edited step. We failed, so we checked the source portion and found the hidden value of hidd3n_valu3 for g_captcha_response. We tried that and the step change, but it still did not work. A possible reason of failure can be that adding real services like Google reCAPTCHA can accidentally patch the vulnerability we were supposed to exploit; it expected a parameter called “g-recaptcha-response” which had to be a valid value that DVWA may have attempted to contact Google's verification API for.
 
