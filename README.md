@@ -822,7 +822,7 @@ s.src = "/vulnerabilities/csp/source/jsonp.php?callback=console.log";
 document.body.appendChild(s);
 ```
 
-<ins>Result:</ins> Console prints “answer=15” instead of the sum
+<ins>Result:</ins> Console prints “answer=15” instead of the sum being displayed on the page.
 
 <ins>Screenshots:</ins>
 
