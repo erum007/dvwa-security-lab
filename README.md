@@ -152,7 +152,7 @@ Command injection succeeded.
 <ins>Screenshots:</ins>
 
 <img src="./media/image98.png"
-style="width:6.25521in;height:3.30224in" />
+style="width:6.25521in;height:3.00224in" />
 
 <ins>Explanation of why it worked:</ins> There might have been stricter validation of input here, but since the pipe operator was still not filtered, it enabled us to carry out our desired operation. Therefore, there is still a need of stricter checks at this level.
 
