@@ -1101,7 +1101,7 @@ Also, we can compare between the two protocols how packets are encrypted. For in
 style="width:6.26772in;height:2.94444in" />
 
 <img src="./media/image112.png"
-style="width:6.26772in;height:2.94444in" />
+style="width:6.26772in;height:3.24444in" />
 
 Meanwhile through https, packets are securely encrypted as demonstrated below:
 
