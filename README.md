@@ -924,7 +924,7 @@ document.forms[0].submit();
 <ins>Screenshots:</ins>
 
 <img src="./media/image102.png"
-style="width:6.13542in;height:2.38542in" />
+style="width:6.13542in;height:2.08542in" />
 
 <ins>Explanation of Why it Worked:</ins> There is an attempt to increase security by an obfuscated script called [<ins>high.js</ins>](http://high.js) that creates token in three separate functions and tries to create complexity by adding conditions such as timing. Upon deobfuscating this script using the source given in the Help section, these functions were then crystal clear. We could either run them separately (first payload) or understand what they do and manually create the token through the same logic (second payload). This is a classic example of security through obscurity not being security.
 
