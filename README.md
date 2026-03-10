@@ -1094,3 +1094,16 @@ Meanwhile with http, there isn't any certificate:
 
 <img src="./media/image58.png"
 style="width:6.26772in;height:2.94444in" />
+
+Also, we can compare between the two protocols how packets are encrypted. For instance, for http, an arbitrarily mock login webpage that used http protocol was used in order to capture its packets in Wireshark. We can clearly see the risk of using this protocol upon the analysis of the packets as demonstrated below: 
+
+<img src="./media/image111.png"
+style="width:6.26772in;height:2.94444in" />
+
+<img src="./media/image112.png"
+style="width:6.26772in;height:2.94444in" />
+
+Meanwhile through https, packets are securely encrypted as demonstrated below:
+
+<img src="./media/image113.png"
+style="width:6.26772in;height:2.94444in" />
