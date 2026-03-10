@@ -898,7 +898,7 @@ script is imported as we see through the following:
 ```javascript
 <script src="../../vulnerabilities/javascript/source/medium.js</script>
 ```
-so exploiting the function in this file instead does the trick.
+so exploiting the function in this file instead does the trick as validation is still on client side.
 
 3.  <ins>Security Level:</ins> High
 
