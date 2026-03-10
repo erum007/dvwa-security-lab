@@ -340,18 +340,19 @@ extension.
 3.  <ins>Security Level:</ins> High
 
 <ins>Payload Used:</ins> shell.php file with command execution script, then
-shell.php.png
+shell.php.png and then shell.jpg
 
-<ins>Result:</ins> Upload attempts failed.
+<ins>Result:</ins> Upload attempt passed.
 
 <ins>Screenshots:</ins>
 
-<img src="./media/image66.png"
+<img src="./media/image101.png"
 style="width:6.26772in;height:2.70833in" />
 
-<ins>Explanation of Why it Failed at Higher Level:</ins> There is stricter
-validation of file extensions, MIME types, and file content to prevent
-malicious/corrupt uploads.
+<img src="./media/image100.png"
+style="width:6.26772in;height:2.70833in" />
+
+<ins>Explanation of Why it Worked:</ins> There is stricter validation of file extension, MIME types, and file content to prevent malicious/corrupt uploads since further validation of png files and jpg files is done by attempting to get their size. However, bypassing this check is possible through a polyglot file with magic bytes that form the file header.
 
 # **Vulnerability 6: Insecure CAPTCHA**
 
