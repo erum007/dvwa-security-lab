@@ -905,39 +905,28 @@ so exploiting the function in this file instead does the trick as validation is 
 
 <ins>Payload Used:</ins>
 ```javascript
-document.getElementById("phrase").value = "success";
-token_part_1("XX");
-token_part_2("success");
-token_part_3("ZZ");
-document.getElementById("send").click();
+document.getElementById("phrase").value="success";
+document.getElementById("token").value=do_something("success");
+token_part_2("XX");
+token_part_3();
+document.forms[0].submit();
 ```
-then
+and
 
 ```javascript
-document.getElementById("phrase").value = "success";
-token_part_1("XX");
-token_part_2("success");
-token_part_3("YY");
-document.getElementById("send").click();
+document.getElementById("phrase").value="success";
+document.getElementById("token").value=sha256(sha256("XXsseccus")+"ZZ");
+document.forms[0].submit();
 ```
 
-<ins>Result:</ins> Invalid Token
+<ins>Result:</ins> "Well done!" string upon running of script
 
 <ins>Screenshots:</ins>
 
-<img src="./media/image38.png"
+<img src="./media/image102.png"
 style="width:6.13542in;height:2.38542in" />
 
-<img src="./media/image33.png"
-style="width:6.26772in;height:2.55556in" />
-
-<ins>Explanation of Why it Failed at Higher Level:</ins> There is an attempt
-to increase security by an obfuscated script called
-[<ins>high.js</ins>](http://high.js) that creates tokens in three separate
-functions (i.e. tied to setTimeout loop and an EventListener so manual
-manipulation via the Console often fails due to a race condition) which
-makes it very difficult to be able to execute scripts that would be sent
-with valid tokens.
+<ins>Explanation of Why it Worked:</ins> There is an attempt to increase security by an obfuscated script called [<ins>high.js</ins>](http://high.js) that creates token in three separate functions and tries to create complexity by adding conditions such as timing. Upon deobfuscating this script using the source given in the Help section, these functions were then crystal clear. We could either run them separately (first payload) or understand what they do and manually create the token through the same logic (second payload). This is a classic example of security through obscurity not being security.
 
 # **Docker Inspection Tasks:**
 
