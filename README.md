@@ -143,23 +143,18 @@ resulting in possibilities to still bypass the filtering.
 3.  <ins>Security Level:</ins> High
 
 <ins>Payload Used:</ins> 127.0.0.1; ls and then 127.0.0.1&& and then ls
-127.0.0.1 \| ls
+127.0.0.1 \| ls then finally 127.0.0.1|dir
 
 <ins>Result:</ins>
 
-Command injection attempts failed.
+Command injection succeeded.
 
 <ins>Screenshots:</ins>
 
-<img src="./media/image73.png"
+<img src="./media/image98.png"
 style="width:6.25521in;height:3.30224in" />
 
-<img src="./media/image45.png"
-style="width:6.26772in;height:3.34722in" />
-
-<ins>Explanation of why it failed at a higher level:</ins> Pretty much all
-special characters seem to be filtered at this security level. This
-input validation prevents additional commands from being executed.
+<ins>Explanation of why it worked:</ins> There might have been stricter validation of input here, but since the pipe operator was still not filtered, it enabled us to carry out our desired operation. Therefore, there is still a need of stricter checks at this level.
 
 # **Vulnerability 3: CSRF**
 
@@ -188,18 +183,20 @@ without verifying their origin at all.
 and then
 
 ```html
+<html>
+<body onload="document.forms[0].submit()">
 <form action="http://localhost:8080/vulnerabilities/csrf/" method="GET">
-  <input type="hidden" name="password_new" value="hacked123">
-  <input type="hidden" name="password_conf" value="hacked123">
-  <input type="hidden" name="Change" value="Change">
+<input type="hidden" name="password_new" value="hacked">
+<input type="hidden" name="password_conf" value="hacked">
+<input type="hidden" name="Change" value="Change">
 </form>
-<script>
-document.forms[0].submit();
+</body>
+</html>
 </script>
 ```
 in a new HTML file.
 
-<ins>Result:</ins> Password change failed on both attempts
+<ins>Result:</ins> Password change failed when file was run without live server, but succeeded when live server extension on VS Code was used.
 
 <ins>Screenshots:</ins>
 
@@ -209,42 +206,24 @@ style="width:6.26772in;height:2.01389in" />
 <img src="./media/image65.png"
 style="width:6.26772in;height:3.22222in" />
 
-<ins>Explanation of Why It Failed at Higher Security Level:</ins> DVWA
-introduces a CSRF token that must be included along with the request.
-Since the forged request does not contain the correct token that is
-needed, the server rejects it.
+<img src="./media/image96.png"
+style="width:6.26772in;height:3.22222in" />
+
+<ins>Explanation of Why It Worked:</ins> DVWA at this security level adds simple defense such as checking referer header. By using live server, the protocol changed from file:// to http:// and the request was executed normally. The DVWA session was recognized and cookies are sent with the request.
 
 3.  <ins>Security Level:</ins> High
 
 <ins>Payload Used:
-<http://localhost:8080/vulnerabilities/csrf/?password_new=test123&password_conf=test123&Change=Change></ins>
-and then
+http://localhost:8080/vulnerabilities/csrf/?password_new=password1&password_conf=password1&Change=Change&user_token=a831b05a2632d1efbfa432494aa58a01</ins>
 
-```html
-<form action="http://localhost:8080/vulnerabilities/csrf/" method="GET">
-  <input type="hidden" name="password_new" value="hacked123">
-  <input type="hidden" name="password_conf" value="hacked123">
-  <input type="hidden" name="Change" value="Change">
-</form>
-<script>
-document.forms[0].submit();
-</script>
-```
-in a new HTML file.
-
-<ins>Result:</ins> Password change failed
+<ins>Result:</ins> Password change successful.
 
 <ins>Screenshots:</ins>
 
-<img src="./media/image23.png"
+<img src="./media/image97.png"
 style="width:5.60938in;height:1.79835in" />
 
-<img src="./media/image85.png"
-style="width:5.60938in;height:3.93327in" />
-
-<ins>Explanation of Why It Failed at Higher Security Level:</ins> Attack
-fails here again due to the fact that there is strict token validation
-tied to the user session.
+<ins>Explanation of Why It Worked:</ins> At the high security level, DVWA uses anti-CSRF tokens for added protection. These tokens are a need in requests to validate authenticity. To bypass, we can inspect the page source or use the browser console to get the token and then it can be put into the payload to make it seem like a verified request.
 
 # **Vulnerability 4: File Inclusion**
 
@@ -294,8 +273,10 @@ keep out real-world attacks.
 [<ins>http://localhost:8080/vulnerabilities/fi/?page=../../../../../../etc/passwd</ins>](http://localhost:8080/vulnerabilities/fi/?page=../../../../../../etc/passwd)
 then
 http://localhost:8080/vulnerabilities/fi/?page=..//..//..//..//..//..//etc/passwd
+then finally
+http://localhost:8080/vulnerabilities/fi/?page=file:////etc/passwd
 
-<ins>Result:</ins> System password file not exposed
+<ins>Result:</ins> System password file exposed
 
 <ins>Screenshots:</ins>
 
@@ -305,9 +286,10 @@ style="width:6.26772in;height:1.79167in" />
 <img src="./media/image10.png"
 style="width:6.26772in;height:2.02778in" />
 
-<ins>Explanation of Why it Failed at Higher Level:</ins> High security
-restricts file inclusion to specific allowed files, preventing all sorts
-of arbitrary file access.
+<img src="./media/image99.png"
+style="width:6.26772in;height:2.02778in" />
+
+<ins>Explanation of Why it Worked:</ins> High security attempts to restrict file inclusion by being stricter with allowed characters, preventing all sorts of arbitrary file access, but there still exist other ways to perform malicious activity such as trying out URL formats and seeing if they are properly validated. By trying the above mentioned payload, we see that we view a confidential file and hence there is a great need for more security checks.
 
 # **Vulnerability 5: File Upload**
 
