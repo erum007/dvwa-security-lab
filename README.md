@@ -351,7 +351,7 @@ style="width:6.26772in;height:2.70833in" />
 
 <ins>Explanation of Why it Failed at Higher Level:</ins> There is stricter
 validation of file extensions, MIME types, and file content to prevent
-malicious uploads.
+malicious/corrupt uploads.
 
 # **Vulnerability 6: Insecure CAPTCHA**
 
