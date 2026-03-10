@@ -356,15 +356,64 @@ style="width:6.26772in;height:2.70833in" />
 
 # **Vulnerability 6: Insecure CAPTCHA**
 
-The Insecure CAPTCHA module could not work at first since the DVWA
-Docker image did not include a configured Google reCAPTCHA API key.
-Therefore, the public and private keys were generated, but trying the
-standard attack by changing “step=1” to “step=2” in URL to skip captcha for
-password change still did not work, even at low level. A possible reason
-can be that adding real services like Google reCAPTCHA can accidentally
-patch the vulnerability we were supposed to exploit; it expected a
-parameter called “g-recaptcha-response” which had to be a valid value
-that DVWA may have attempted to contact Google's verification API for.
+The Insecure CAPTCHA module could not work at first since the DVWA Docker image did not include a configured Google reCAPTCHA API key. Therefore, the public and private keys were generated and put in the specified config file.
+
+1.  <ins>Security Level:</ins> Low
+
+<ins>Payload Used:</ins> Changed step=1 to step=2 in password change request in Burp Suite.
+
+<ins>Result:</ins> Captcha verified and password changed.
+
+<ins>Screenshots:</ins>
+
+<img src="./media/image104.png"
+style="width:5.9375in;height:2.46875in" />
+
+<img src="./media/image105.png"
+style="width:6.08333in;height:2.65625in" />
+
+<img src="./media/image103.png"
+style="width:6.08333in;height:2.65625in" />
+
+<ins>Explanation of Why it Worked:</ins> At this security level, upon inspection of source file, it was found that the captcha was verified once the parameter for step argument was 2. By intercepting the request, editing the argument from 1 to 2, and then forwarding it, the captcha was verified and password was changed.
+
+2.  <ins>Security Level:</ins> Medium
+
+<ins>Payload Used:</ins> Changed step=1 to step=2 in password change request in Burp Suite, and added an extra argument passed_captcha with value true.
+
+<ins>Result:</ins> Captcha verified and password changed.
+
+<ins>Screenshots:</ins>
+
+<img src="./media/image106.png"
+style="width:5.9375in;height:2.46875in" />
+
+<img src="./media/image107.png"
+style="width:6.08333in;height:2.65625in" />
+
+<ins>Explanation of Why it Worked:</ins> At this security level, upon inspection of source file, it was found that the captcha was verified not only when the parameter for step argument was 2, but also when an extra argument passed_captcha was added with the value of 2. By intercepting the request, editing it, and then forwarding it, the captcha was verified and password was changed.
+
+2.  <ins>Security Level:</ins> High
+
+<ins>Payload Used:</ins> Changed parameter of g_captcha_response argument to hidd3n_valu3 and also changed step=1 to step=2 in password change request in Burp Suite.
+
+<ins>Result:</ins> Captcha not verified.
+
+<ins>Screenshots:</ins>
+
+<img src="./media/image110.png"
+style="width:5.9375in;height:2.46875in" />
+
+<img src="./media/image108.png"
+style="width:6.08333in;height:2.65625in" />
+
+<img src="./media/image114.png"
+style="width:6.08333in;height:2.65625in" />
+
+<img src="./media/image109.png"
+style="width:6.08333in;height:2.65625in" />
+
+<ins>Explanation of Why it Failed at a Higher Level:</ins> This is where it got tricky. Upon inspection of source file, again it was found that the captcha was verified not only when the parameter for step argument was 2 but also when an extra argument (g_captcha_response) was added with a specific value. To start off, we turned off FoxyProxy (proxy used for Burp Suite), solved the captcha (since Google reCAPTCHA did not work with proxy on), turned it back off and then clicked submit. The request was intercepted, and two attempts were made. We first left the argument for g_captcha_response as is and only edited step. We failed, so we checked the source portion and found the hidden value of hidd3n_valu3 for g_captcha_response. We tried that and the step change, but it still did not work. A possible reason of failure can be that adding real services like Google reCAPTCHA can accidentally patch the vulnerability we were supposed to exploit; it expected a parameter called “g-recaptcha-response” which had to be a valid value that DVWA may have attempted to contact Google's verification API for.
 
 <img src="./media/image22.png"
 style="width:6.13542in;height:2.73958in" />
