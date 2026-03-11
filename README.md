@@ -393,7 +393,7 @@ style="width:6.08333in;height:2.65625in" />
 
 <ins>Explanation of Why it Worked:</ins> At this security level, upon inspection of source file, it was found that the captcha was verified not only when the parameter for step argument was 2, but also when an extra argument passed_captcha was added with the value of 2. By intercepting the request, editing it, and then forwarding it, the captcha was verified and password was changed.
 
-2.  <ins>Security Level:</ins> High
+3.  <ins>Security Level:</ins> High
 
 <ins>Payload Used:</ins> Changed parameter of g_captcha_response argument to hidd3n_valu3 and also changed step=1 to step=2 in password change request in Burp Suite.
 
